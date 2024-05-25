@@ -14,12 +14,15 @@ from .forms import ClienteForm, InformacionAdicionalForm
 from .logic.cliente_logic import get_cliente, create_cliente
 import requests
 import json
+ 
+ 
 
 @login_required
 def cliente_list(request):
     role = getRole(request)
     print(role) 
     email = getEmail(request)
+    
     if role != "Administrador" and role != "Empleado" :
         form = ClienteForm()
         context = {
