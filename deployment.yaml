@@ -233,10 +233,6 @@ resources:
           sudo python3 manage.py migrate
 
 
-
-
-
-resources:
 # Service instances
 - name: msd-places-ms
   type: compute.v1.instance
