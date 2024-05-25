@@ -102,7 +102,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir proyecto
+          sudo mkdir /proyecto
           cd proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes
@@ -197,7 +197,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir proyecto
+          sudo mkdir /proyecto
           cd proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/variables
@@ -230,7 +230,7 @@ resources:
           #!/bin/bash
           sudo apt-get update
           sudo apt install python3-pip -y
-          sudo mkdir proyecto
+          sudo mkdir /proyecto
           cd proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/measurements
@@ -266,7 +266,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir proyecto
+          sudo mkdir /proyecto
           cd proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/places
