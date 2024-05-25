@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.conf import settings
 from proyectoBase.auth0backend import getRole
 from proyectoBase.auth0backend import getEmail
+from django.contrib.auth.decorators import login_required
 from .forms import ClienteForm, InformacionAdicionalForm
 from .logic.cliente_logic import get_cliente, create_cliente
 import requests
