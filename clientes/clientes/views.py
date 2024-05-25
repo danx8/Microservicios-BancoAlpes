@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase')
 from .models import Cliente
 from django.shortcuts import render, redirect
 from django.contrib import messages
