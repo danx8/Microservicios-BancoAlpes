@@ -241,7 +241,7 @@ resources:
     machineType: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/zones/us-central1-a/machineTypes/e2-micro
     disks:
     - deviceName: boot
-      type: PERSISTENT--
+      type: PERSISTENT
       boot: true
       autoDelete: true
       initializeParams:
