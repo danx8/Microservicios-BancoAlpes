@@ -9,13 +9,13 @@ services:
           - /variables
         strip_path: false
 
-  - name: measurements_service
-    host: measurements_upstream
+  - name: clientes_service
+    host: clientes_upstream
     protocol: http
     routes:
-      - name: measurements
+      - name: clientes
         paths:
-          - /measurements
+          - /clientes
         strip_path: false
 
   - name: places_service
@@ -32,7 +32,7 @@ upstreams:
       - target: 10.128.0.84:8080
         weight: 100
 
-  - name: measurements_upstream
+  - name: clientes_upstream
     targets:
       - target: 10.128.0.85:8080
         weight: 100
