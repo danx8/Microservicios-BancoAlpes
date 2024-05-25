@@ -103,7 +103,7 @@ resources:
         value: |
           #!/bin/bash
           sudo mkdir /proyecto
-          cd proyecto
+          cd /proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes
           docker network create kong-net
@@ -198,7 +198,7 @@ resources:
         value: |
           #!/bin/bash
           sudo mkdir /proyecto
-          cd proyecto
+          cd /proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/variables
 
@@ -231,7 +231,7 @@ resources:
           sudo apt-get update
           sudo apt install python3-pip -y
           sudo mkdir /proyecto
-          cd proyecto
+          cd /proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/clientes
           sudo pip3 install -r requirements.txt
@@ -267,7 +267,7 @@ resources:
         value: |
           #!/bin/bash
           sudo mkdir /proyecto
-          cd proyecto
+          cd /proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/places
 # Database instances
