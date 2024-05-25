@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase/')
+#sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase/')
 from .models import Cliente
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
-from proyectoBase.auth0backend import getRole
-from proyectoBase.auth0backend import getEmail
+from proyecto.auth0backend import getRole
+from proyecto.auth0backend import getEmail
 from django.contrib.auth.decorators import login_required
 from .forms import ClienteForm, InformacionAdicionalForm
 from .logic.cliente_logic import get_cliente, create_cliente
