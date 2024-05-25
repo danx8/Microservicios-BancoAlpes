@@ -197,8 +197,8 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir /proyecto
-          cd /proyecto
+          sudo mkdir /home/proyecto
+          cd /home/proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/variables
 
@@ -230,8 +230,8 @@ resources:
           #!/bin/bash
           sudo apt-get update
           sudo apt install python3-pip -y
-          sudo mkdir /proyecto
-          cd /proyecto
+          sudo mkdir /home/proyecto
+          cd /home/proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/clientes
           sudo pip3 install -r requirements.txt
@@ -266,8 +266,8 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir /proyecto
-          cd /proyecto
+          sudo mkdir /home/proyecto
+          cd /home/proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/places
 # Database instances

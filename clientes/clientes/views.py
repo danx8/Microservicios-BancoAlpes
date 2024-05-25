@@ -5,8 +5,40 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
+from proyectoBase.auth0backend import getRole
+from proyectoBase.auth0backend import getEmail
+from .forms import ClienteForm, InformacionAdicionalForm
+from .logic.cliente_logic import get_cliente, create_cliente
 import requests
 import json
+
+@login_required
+def cliente_list(request):
+    role = getRole(request)
+    print(role) 
+    email = getEmail(request)
+    if role != "Administrador" and role != "Empleado" :
+        form = ClienteForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'Cliente/clienteFailed.html', context)
+     
+      
+    clientes = get_cliente()
+    context = {
+            'cliente_list': clientes
+    }
+    return render(request, 'Cliente/clientes.html', context)
+
+
+
+
+
+
+
+
+
 
 def check_variable(data):
     r = requests.get(settings.PATH_VAR, headers={"Accept":"application/json"})
