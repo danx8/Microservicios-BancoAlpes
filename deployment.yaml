@@ -141,7 +141,7 @@ resources:
           #!/bin/bash
           docker run --restart=always -d -e POSTGRES_USER=variables_user -e POSTGRES_DB=variables_db -e POSTGRES_PASSWORD=isis2503 -p 5432:5432 --name variables-db postgres
 
-- name: msd-measurements-db
+- name: msd-clientes-db
   type: compute.v1.instance
   properties:
     zone: us-central1-a
@@ -167,7 +167,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          docker run --restart=always -d -e POSTGRES_USER=measurements_user -e POSTGRES_DB=measurements_db -e POSTGRES_PASSWORD=isis2503 -p 5432:5432 --name measurements-db postgres
+          docker run --restart=always -d -e POSTGRES_USER=clientes_user -e POSTGRES_DB=clientes_db -e POSTGRES_PASSWORD=isis2503 -p 5432:5432 --name clientes-db postgres
 
 
 # Service instances
@@ -202,7 +202,7 @@ resources:
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/variables
 
-- name: msd-measurements-ms
+- name: msd-clientes-ms
   type: compute.v1.instance
   properties:
     zone: us-central1-a
@@ -233,7 +233,7 @@ resources:
           sudo mkdir /proyecto
           cd proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
-          cd Microservicios-BancoAlpes/measurements
+          cd Microservicios-BancoAlpes/clientes
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate

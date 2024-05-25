@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'measurements',
+    'clientes',
 ]
 
 MIDDLEWARE = [
@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("MEASUREMENTS_DB", "measurements_db"),
-        'USER': os.environ.get("MEASUREMENTS_DB_USER", "measurements_user"),
-        'PASSWORD': os.environ.get("MEASUREMENTS_DB_PASSWD", "isis2503"),
-        'HOST': os.environ.get("MEASUREMENTS_DB_HOST", "10.128.0.83"),
-        'PORT': os.environ.get("MEASUREMENTS_DB_PORT", "5432")
+        'NAME': os.environ.get("CLIENTES_DB", "clientes_db"),
+        'USER': os.environ.get("CLIENTES_DB_USER", "clientes_user"),
+        'PASSWORD': os.environ.get("CLIENTES_DB_PASSWD", "isis2503"),
+        'HOST': os.environ.get("CLIENTES_DB_HOST", "10.128.0.83"),
+        'PORT': os.environ.get("CLIENTES_DB_PORT", "5432")
     }
 }
 
