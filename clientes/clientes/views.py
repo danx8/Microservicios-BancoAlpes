@@ -1,4 +1,5 @@
 import sys
+#export PYTHONPATH=/Microservicios-BancoAlpes/proyectoBase:$PYTHONPATH
 #sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase/')
 from .models import Cliente
 from django.shortcuts import render, redirect
