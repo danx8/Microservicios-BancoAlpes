@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    No puedes realizar esta acción porque tu cuenta no tiene un email asociado en nuestro sistema.
+</div>
+<button type="button" class="btn btn-primary waves-effect waves-light" onclick="history.back()">
+    Back
+</button>
+{% endblock %}
