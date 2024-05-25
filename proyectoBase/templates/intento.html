@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Opción</title>
+</head>
+<body>
+    <h2>Selecciona una opción:</h2>
+    <form method="post" action="{% url 'formulario' %}">
+        {% csrf_token %}
+        <input type="checkbox" id="opcion1" name="opcion" value="opcion1">
+        <label for="opcion1">Opción 1 (Estándar, Visa, Cupo 1000)</label><br>
+        <input type="checkbox" id="opcion2" name="opcion" value="opcion2">
+        <label for="opcion2">Opción 2 (Oro, Mastercard, Cupo 2000)</label><br>
+        <input type="checkbox" id="opcion3" name="opcion" value="opcion3">
+        <label for="opcion3">Opción 3 (Estándar, Mastercard, Cupo 2000)</label><br>
+        <input type="checkbox" id="opcion4" name="opcion" value="opcion4">
+        <label for="opcion4">Opción 4 (Personalizada)</label><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

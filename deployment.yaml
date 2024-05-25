@@ -102,8 +102,8 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo mkdir /proyecto
-          cd /proyecto
+          sudo mkdir /home/proyecto
+          cd /home/proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes
           docker network create kong-net
