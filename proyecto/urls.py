@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.index),
     path('terminosCondiciones', views.terminosycondiciones),
     path('healthcheck/', views.healthcheck),
-    path('', include('clientes.urls')),
+    path('', include('clientes.clientes.urls')),
     path('', include('adicionales.urls')),
     #path('', include('account.urls')),
     path(r'', include('django.contrib.auth.urls')),
