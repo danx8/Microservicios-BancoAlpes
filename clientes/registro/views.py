@@ -12,7 +12,7 @@ from django.conf import settings
 from .auth0backend import getRole
 from .auth0backend import getEmail
 from django.contrib.auth.decorators import login_required
-from .forms import ClienteForm, InformacionAdicionalForm
+from .forms import ClienteFormRegistro
 import requests
 import json
 import pika 
