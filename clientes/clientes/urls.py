@@ -12,11 +12,12 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', views.cliente_list, name='clienteList'),
-    path(r'', include('django.contrib.auth.urls')),
+    
     
     path('accounts/', include('django.contrib.auth.urls')),  # Default Django auth URLs
     
-    path(r'login/auth0*', include('social_django.urls', namespace='social')),  # Auth0 URL
+    
+    path(r'', include('django.contrib.auth.urls')),
     #path('login/auth0', include('social_django.urls')),  # Auth0 URL
     #url(r'^clientes/', views.ClienteList),
     #url(r'^clientecreate/$', csrf_exempt(views.ClienteCreate), name='clienteCreate'),
