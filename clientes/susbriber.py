@@ -19,12 +19,13 @@ def main():
     connection = pika.BlockingConnection(
     pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
     channel = connection.channel()
-    channel.exchange_declare(exchange=exchange, exchange_type='topic', durable=True)
+    channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)
    
 
     # Declara la cola
     result = channel.queue_declare(queue='', exclusive=True)
     queue_name = result.method.queue
+    print("queue_name",queue_name)
 
     # Enlaza la cola al intercambio
     channel.queue_bind(exchange= exchange, queue=queue_name, routing_key=routing_key)

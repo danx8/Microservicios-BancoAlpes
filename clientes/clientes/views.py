@@ -142,9 +142,11 @@ def cliente_edit(request, cliente_id):
             connection = pika.BlockingConnection(
             pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
             channel = connection.channel()
-            channel.exchange_declare(exchange=exchange, exchange_type='topic', durable=True)
+            channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)
            
-            channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, properties=pika.BasicProperties(delivery_mode=2, ))            
+            channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, 
+                                  properties=pika.BasicProperties(delivery_mode=2, )
+                                  )            
                         
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
