@@ -58,6 +58,6 @@ def getEmail(request):
     resp = requests.get(url, headers=headers)
     userinfo = resp.json()
     print("userinfos",userinfo)
-    email = userinfo['dev-7kijsxsv483uz7nf.us.auth0.com/email']
+    email = userinfo['email']
     print("email", email)
     return (email)
