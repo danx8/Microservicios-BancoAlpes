@@ -49,6 +49,7 @@ def getRole(request):
 
 def getEmail(request):
 
+
     user = request.user 
     auth0user = user.social_auth.filter(provider="auth0")[0]
     accessToken = auth0user.extra_data['access_token']
@@ -56,7 +57,7 @@ def getEmail(request):
     headers = {'authorization': 'Bearer ' + accessToken}
     resp = requests.get(url, headers=headers)
     userinfo = resp.json()
-    print(resp)
+    print("userinfos",userinfo)
     email = userinfo['dev-7kijsxsv483uz7nf.us.auth0.com/email']
-    print(email)
+    print("email", email)
     return (email)
