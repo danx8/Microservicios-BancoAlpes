@@ -1,4 +1,6 @@
 import pika
+import json
+from .clientes.models import Cliente
 
 rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
@@ -9,11 +11,31 @@ queue_name = 'clientes_queue'
 
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
+    json_to_model(body)
+    
+    
+    
     # Aquí puedes procesar el mensaje como necesites
     # Por ejemplo, convertirlo de JSON a un diccionario de Python si es necesario
     # import json
     # message = json.loads(body)
     # print("Processed message:", message)
+
+
+
+def json_to_model(json_string):
+    # Deserialize JSON string into Python dictionary
+    data = json.loads(json_string)
+
+    # Create a new Clientes model instance using the dictionary
+    cliente = Cliente(**data)
+    
+    # Save the model instance to the database if needed
+    cliente.save()
+
+    return cliente
+
+
 
 def main():
     # Conéctate a RabbitMQ
@@ -37,5 +59,7 @@ def main():
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
 
+    
+    
 if __name__ == '__main__':
     main()
