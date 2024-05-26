@@ -12,6 +12,13 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', views.cliente_list, name='clienteList'),
+    path('clienteFailed/', views.cliente_list, name='clienteFailed'),
+    path('clientecreate/', csrf_exempt(views.cliente_create), name='clienteCreate'),
+    path('clienteCreateFailed/', csrf_exempt(views.cliente_create), name='clienteCreateFailed'),
+    path('clienteEdit/<int:cliente_id>/', csrf_exempt(views.cliente_edit), name='clienteEdit'),
+    path('clienteBorrar/<int:cliente_id>/', views.cliente_borrar, name='clienteBorrar'),
+    path('clienteEditSave/', csrf_exempt(views.cliente_edit), name='clienteEditSave'),
+    #path('clientecreate-jmeter/', csrf_exempt(views.cliente_create_jmeter), name='cliente_create_jmeter'),
     
     
     path('accounts/', include('django.contrib.auth.urls')),  # Default Django auth URLs
