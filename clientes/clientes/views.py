@@ -113,7 +113,8 @@ def cliente_edit(request, cliente_id):
         form = ClienteForm(request.POST, instance=cliente)
         if form.is_valid():
             # Guardar los cambios si el formulario es válido
-            form.save()
+            #form.save()
+            print('form',form)
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
             context = {
