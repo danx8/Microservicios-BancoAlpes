@@ -10,7 +10,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-   
+    path('', views.index),
+    path('registro/terminos-y-condiciones', views.terminosycondiciones),
 ]
 
 if settings.DEBUG is True:
