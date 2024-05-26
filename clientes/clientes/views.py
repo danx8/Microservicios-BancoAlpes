@@ -27,7 +27,7 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 @login_required
 def cliente_list(request):
     role = getRole(request)
-    print("CLIENTE_LIST std",file=sys.stdin)
+    print("CLIENTE_LIST std",file=sys.stderr)
     print("CLIENTE_LIST none")
     print(role) 
     email = getEmail(request)
