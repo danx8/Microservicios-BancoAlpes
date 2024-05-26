@@ -30,6 +30,7 @@ rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
 exchange = 'clientes_exchange'
+routing_key='clientes'
 #opic = 'ML.505.Temperature'
 
 @login_required
@@ -144,7 +145,7 @@ def cliente_edit(request, cliente_id):
             channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)
             
            
-            channel.basic_publish(exchange=exchange, body=json_data)            
+            channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key)            
                         
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
