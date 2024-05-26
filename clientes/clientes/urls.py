@@ -11,11 +11,11 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('clientes/', views.cliente_list, name='clienteList'),
+    path('clientes/', views.cliente_list, name='clientes_list'),
     path('clientes/account/', views.cliente_account, name='account'),
-    path('clientes/failed/', views.cliente_list, name='clienteFailed'),
-    path('clientes/create/', csrf_exempt(views.cliente_create), name='clienteCreate'),
-    path('clientes/create/failed/', csrf_exempt(views.cliente_create), name='clienteCreateFailed'),
+    path('clientes/failed/', views.cliente_list, name='clientes_failed'),
+    path('clientes/create/', csrf_exempt(views.cliente_create), name='clientes_create'),
+    path('clientes/create/failed/', csrf_exempt(views.cliente_create), name='clientes_create_failed'),
     path('clientes/edit/<int:cliente_id>/', csrf_exempt(views.cliente_edit), name='clienteEdit'),
     path('clientes/delete/<int:cliente_id>/', views.cliente_borrar, name='clienteBorrar'),
     path('clientes/edit-save/', csrf_exempt(views.cliente_edit), name='clienteEditSave'),
@@ -29,7 +29,7 @@ urlpatterns = [
     path(r'', include('social_django.urls')),
 
     #path('login/auth0', include('social_django.urls')),  # Auth0 URL
-    #url(r'^clientes/', views.ClienteList),
+    #url(r'^clientes/', views.clientes_list),
     #url(r'^clientecreate/$', csrf_exempt(views.ClienteCreate), name='clienteCreate'),
     #url(r'^createclientes/$', csrf_exempt(views.ClientesCreate), name='createClientes'),
 ]

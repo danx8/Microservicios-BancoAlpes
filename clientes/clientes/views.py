@@ -95,7 +95,7 @@ def cliente_create(request):
             messages.add_message(request, messages.SUCCESS, 'Successfully created cliente')
             #return redirect(reverse('cliente_list'))
 
-            return HttpResponseRedirect(reverse('clienteCreate'))
+            return HttpResponseRedirect(reverse('clientes/create'))
         else:
             print(form.errors)
     else:
@@ -176,7 +176,7 @@ def cliente_borrar(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
     if request.method == 'POST':
         cliente.delete()
-        return HttpResponseRedirect(reverse('clienteList'))
+        return HttpResponseRedirect(reverse('clientes_list'))
     
     context = {
         'cliente': cliente,
@@ -206,12 +206,12 @@ def check_place(data):
 
 
 
-def ClienteList(request):
+def clientes_list(request):
     queryset = Cliente.objects.all()
     context = list(queryset.values('id', 'variable', 'value', 'unit', 'place', 'dateTime'))
     return JsonResponse(context, safe=False)
 
-def ClienteCreate(request):
+def clientes_create(request):
     if request.method == 'POST':
         data = request.body.decode('utf-8')
         data_json = json.loads(data)
