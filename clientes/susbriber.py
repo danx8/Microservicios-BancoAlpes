@@ -4,7 +4,8 @@ rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
 exchange = 'clientes_exchange'
-routing_key='clientes'
+routing_key='clientes_routing_key'
+queue_name = 'clientes_queue'
 
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
@@ -23,9 +24,9 @@ def main():
    
 
     # Declara la cola
-    result = channel.queue_declare(queue='', exclusive=True)
-    queue_name = result.method.queue
-    print("queue_name",queue_name)
+    channel.queue_declare(queue=queue_name, durable=True)
+
+    
 
     # Enlaza la cola al intercambio
     channel.queue_bind(exchange= exchange, queue=queue_name, routing_key=routing_key)

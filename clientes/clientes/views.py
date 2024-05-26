@@ -30,8 +30,9 @@ rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
 exchange = 'clientes_exchange'
-routing_key='clientes'
-#opic = 'ML.505.Temperature'
+exchange = 'clientes_exchange'
+routing_key='clientes_routing_key'
+queue_name = 'clientes_queue'
 
 @login_required
 def cliente_list(request):
@@ -135,10 +136,6 @@ def cliente_edit(request, cliente_id):
             print('instance_dict--------------',instance_dict)
             print('jason---',json_data)
             
-            #!/usr/bin/env python
-            
-            
-            
             connection = pika.BlockingConnection(
             pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
             channel = connection.channel()
@@ -147,6 +144,9 @@ def cliente_edit(request, cliente_id):
             channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, 
                                   properties=pika.BasicProperties(delivery_mode=2, )
                                   )            
+                        
+                        
+                        
                         
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
