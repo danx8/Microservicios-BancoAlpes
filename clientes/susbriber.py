@@ -1,8 +1,6 @@
 import pika
 import json
 
-
-
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clientes.settings')
 import django
