@@ -4,12 +4,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-
-
-
 from . import views
 
 urlpatterns = [
+    path('', include('registro.urls')),
     path('admin/', admin.site.urls),
     path('clientes/', views.cliente_list, name='clientes_list'),
     path('clientes/account/', views.cliente_account, name='account'),
@@ -19,6 +17,8 @@ urlpatterns = [
     path('clientes/edit/<int:cliente_id>/', csrf_exempt(views.cliente_edit), name='clienteEdit'),
     path('clientes/delete/<int:cliente_id>/', views.cliente_borrar, name='clienteBorrar'),
     path('clientes/edit-save/', csrf_exempt(views.cliente_edit), name='clienteEditSave'),
+
+
     #path('clientecreate-jmeter/', csrf_exempt(views.cliente_create_jmeter), name='cliente_create_jmeter'),
     
     
