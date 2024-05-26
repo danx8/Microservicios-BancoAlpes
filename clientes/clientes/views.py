@@ -19,13 +19,18 @@ from .logic.cliente_logic import get_cliente, create_cliente
 import requests
 import json
  
- 
+import pika
+
  
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
  
- 
+rabbit_host = '10.128.0.6'
+rabbit_user = 'monitoring_user'
+rabbit_password = 'isis2503'
+exchange = 'clientes_exchange'
+#opic = 'ML.505.Temperature'
 
 @login_required
 def cliente_list(request):
@@ -128,6 +133,17 @@ def cliente_edit(request, cliente_id):
             print('instance---------',instance)
             print('instance_dict--------------',instance_dict)
             print('jason---',json_data)
+            
+            #!/usr/bin/env python
+            
+            
+            
+            connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
+            channel = connection.channel()
+            channel.exchange_declare(exchange=exchange, exchange_type='direct')
+            channel.basic_publish(exchange=exchange, body=json_data)            
+                        
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
             context = {
@@ -152,6 +168,7 @@ class DateTimeEncoder(json.JSONEncoder):
         if isinstance(obj, date):
             return obj.strftime('%Y-%m-%d')
         return json.JSONEncoder.default(self, obj)
+
 
 @login_required
 def cliente_borrar(request, cliente_id):  
