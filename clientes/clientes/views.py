@@ -34,6 +34,10 @@ exchange = 'clientes_exchange'
 routing_key='clientes_routing_key'
 queue_name = 'clientes_queue'
 
+connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
+channel = connection.channel()
+
 @login_required
 def cliente_list(request):
     role = getRole(request)
@@ -136,9 +140,7 @@ def cliente_edit(request, cliente_id):
             print('instance_dict--------------',instance_dict)
             print('jason---',json_data)
             
-            connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
-            channel = connection.channel()
+            
             channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)
            
             channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, 
