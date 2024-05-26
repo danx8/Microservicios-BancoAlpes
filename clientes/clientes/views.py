@@ -1,4 +1,6 @@
 import sys
+
+from django.forms import model_to_dict
 #export PYTHONPATH=/Microservicios-BancoAlpes/proyectoBase:$PYTHONPATH
 #sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase/')
 from .models import Cliente
@@ -118,7 +120,13 @@ def cliente_edit(request, cliente_id):
             # Now you can access attributes of the object instance and perform additional operations if needed
             
             #instance.save()
-            print('instance',instance)
+            instance_dict = model_to_dict(instance)
+            json_data = json.dumps(instance_dict)
+            
+            #convertir a JSON y mandar el JSON a rabiit
+            print('instance---------',instance)
+            print('instance_dict--------------',instance_dict)
+            print('jason---',json_data)
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
             context = {
