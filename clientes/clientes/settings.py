@@ -166,7 +166,9 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
     'role',
 ]
 
+
 AUTHENTICATION_BACKENDS = {
-    'proyecto.auth0backend.Auth0',
+    'clientes.auth0backend.Auth0',
+    'social_core.backends.auth0.Auth0OAuth2',
     'django.contrib.auth.backends.ModelBackend',
 }
