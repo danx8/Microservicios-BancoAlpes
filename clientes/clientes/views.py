@@ -31,7 +31,7 @@ def cliente_list(request):
     print("CLIENTE_LIST none")
     print(role) 
     email = getEmail(request)
-    
+    print(email) 
     if role != "Administrador" and role != "Empleado" :
         form = ClienteForm()
         context = {
