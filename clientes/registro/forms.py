@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente, InformacionAdicional
+from .clientes.models import Cliente, InformacionAdicional
 
 class ClienteForm(forms.ModelForm):
     terminosYCondiciones = forms.BooleanField(label='Acepto los términos y condiciones', required=True)
