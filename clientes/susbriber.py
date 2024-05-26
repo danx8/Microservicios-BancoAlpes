@@ -4,7 +4,7 @@ import json
 
 
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_name.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clientes.settings')
 import django
 django.setup()
 from .clientes.models import Cliente
