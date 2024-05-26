@@ -1,13 +1,11 @@
 from datetime import date
 import sys
-
 from django.forms import model_to_dict
-#export PYTHONPATH=/Microservicios-BancoAlpes/proyectoBase:$PYTHONPATH
-#sys.path.append('/home/proyecto/Microservicios-BancoAlpes/proyectoBase/')
 from .models import Cliente
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,Http404
+
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
@@ -18,13 +16,9 @@ from .forms import ClienteForm, InformacionAdicionalForm
 from .logic.cliente_logic import get_cliente, create_cliente
 import requests
 import json
- 
-import pika
+import pika 
 
- 
-from django.http import Http404, HttpResponseRedirect
-from django.urls import reverse
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+
 from .rabbit_const import *
 
 
@@ -95,7 +89,7 @@ def cliente_create(request):
             messages.add_message(request, messages.SUCCESS, 'Successfully created cliente')
             #return redirect(reverse('cliente_list'))
 
-            return HttpResponseRedirect(reverse('clientes/create'))
+            return HttpResponseRedirect(reverse('clientes_create'))
         else:
             print(form.errors)
     else:
