@@ -21,10 +21,6 @@ def create_cliente(form, channel):
     channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)       
     channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, properties=pika.BasicProperties(delivery_mode=2, ))            
             
-    
-    
-    cliente = form.save()
-    cliente.save()
     return ()
 
 class DateTimeEncoder(json.JSONEncoder):
