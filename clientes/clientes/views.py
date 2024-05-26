@@ -114,7 +114,11 @@ def cliente_edit(request, cliente_id):
         if form.is_valid():
             # Guardar los cambios si el formulario es válido
             #form.save()
-            print('form',form)
+            instance = form.save(commit=False)  # Get the object instance without saving to the database yet
+            # Now you can access attributes of the object instance and perform additional operations if needed
+            
+            #instance.save()
+            print('instance',instance)
             messages.success(request, 'Cliente updated successfully')
             form = ClienteForm()
             context = {
