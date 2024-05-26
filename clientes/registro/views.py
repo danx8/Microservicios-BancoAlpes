@@ -1,7 +1,7 @@
 from datetime import date
 import sys
 from django.forms import model_to_dict
-from ..clientes.models import Cliente
+from clientes.models import Cliente
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect,Http404
