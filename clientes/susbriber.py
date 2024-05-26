@@ -1,9 +1,13 @@
 import pika
 import json
-import os
-from clientes.models import Cliente
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "clientes.settings")
 
+
+
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_name.settings')
+import django
+django.setup()
+from .clientes.models import Cliente
 
 rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
