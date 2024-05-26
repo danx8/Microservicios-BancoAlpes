@@ -50,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # Añadir este middleware
+
 ]
 
 ROOT_URLCONF = 'clientes.urls'
@@ -149,7 +152,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ----------------------------------------------------------------------------------------------------------------------
 LOGIN_URL = "/login/auth0"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/clientes/"
 LOGOUT_REDIRECT_URL = "https://dev-7kijsxsv483uz7nf.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.120.216.61:8000"
                                
 
