@@ -18,6 +18,8 @@ urlpatterns = [
     
     
     path(r'', include('django.contrib.auth.urls')),
+    path(r'', include('social_django.urls')),
+
     #path('login/auth0', include('social_django.urls')),  # Auth0 URL
     #url(r'^clientes/', views.ClienteList),
     #url(r'^clientecreate/$', csrf_exempt(views.ClienteCreate), name='clienteCreate'),
