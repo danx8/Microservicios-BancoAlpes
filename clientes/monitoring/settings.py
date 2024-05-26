@@ -138,3 +138,36 @@ STATICFILES_DIRS = (
 
 PATH_VAR    = "http://" + os.environ.get("VARIABLES_HOST", "10.128.0.84") + ":" + os.environ.get("VARIABLES_PORT", "8080") + "/variables"
 PATH_PLACES = "http://" + os.environ.get("PLACES_HOST", "10.128.0.90") + ":" + os.environ.get("PLACES_PORT", "8080") + "/places"
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# ----------------------------------------------------------------------------------------------------------------------
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://dev-7kijsxsv483uz7nf.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.120.216.61:8000"
+                               
+
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-7kijsxsv483uz7nf.us.auth0.com'
+                            
+SOCIAL_AUTH_AUTH0_KEY = 'WVQeIwKY9ABowno5czojaQABIC2gBhwe'
+SOCIAL_AUTH_AUTH0_SECRET = 'wY1O_PWr1taZ-OYy5uuLoYP5eKAU0NKS9kapQ9X_qGCXSwA-opv-25M7UmhAGT4Z'
+                            
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email',
+    'role',
+]
+
+AUTHENTICATION_BACKENDS = {
+    'proyecto.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend',
+}
