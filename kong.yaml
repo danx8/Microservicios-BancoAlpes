@@ -16,6 +16,7 @@ services:
       - name: clientes
         paths:
           - /clientes
+          - /accounts
         strip_path: false
 
   - name: places_service
