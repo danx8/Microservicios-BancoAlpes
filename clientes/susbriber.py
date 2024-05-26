@@ -1,6 +1,6 @@
 import pika
 import json
-from .clientes.models import Cliente
+from clientes.models import Cliente
 
 rabbit_host = '10.128.0.6'
 rabbit_user = 'monitoring_user'
