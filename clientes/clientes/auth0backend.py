@@ -56,5 +56,7 @@ def getEmail(request):
     headers = {'authorization': 'Bearer ' + accessToken}
     resp = requests.get(url, headers=headers)
     userinfo = resp.json()
+    print(resp)
     email = userinfo['dev-7kijsxsv483uz7nf.us.auth0.com/email']
+    print(email)
     return (email)
