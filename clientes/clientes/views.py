@@ -25,7 +25,7 @@ import pika
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-from ..rabbit_const import *
+from rabbit_const import *
 
 
 connection = pika.BlockingConnection(

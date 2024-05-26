@@ -6,7 +6,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clientes.settings')
 import django
 django.setup()
 from clientes.models import Cliente
-from rabbit_const import *
+from clientes.rabbit_const import *
 
 
 def callback(ch, method, properties, body):

@@ -3,7 +3,7 @@ from datetime import date
 from django.forms import model_to_dict
 import json
 import pika
-from ...rabbit_const import *
+from ..rabbit_const import *
 
 def get_cliente():
     queryset = Cliente.objects.all()
