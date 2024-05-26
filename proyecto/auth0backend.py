@@ -1,8 +1,8 @@
 import requests 
-from social_core.backends.oauth import BaseOAuth2 # type: ignore
+#from social_core.backends.oauth import BaseOAuth2 # type: ignore
 
-class Auth0(BaseOAuth2):
-#class Auth0():
+#class Auth0(BaseOAuth2):
+class Auth0():
     """Auth0 OAuth authentication backend""" 
     name = 'auth0'
     SCOPE_SEPARATOR = ' '
