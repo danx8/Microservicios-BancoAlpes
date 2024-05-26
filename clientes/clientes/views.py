@@ -1,3 +1,4 @@
+from datetime import date
 import sys
 
 from django.forms import model_to_dict
@@ -121,7 +122,7 @@ def cliente_edit(request, cliente_id):
             
             #instance.save()
             instance_dict = model_to_dict(instance)
-            json_data = json.dumps(instance_dict)
+            json_data = json.dumps(instance_dict, cls=DateTimeEncoder)
             
             #convertir a JSON y mandar el JSON a rabiit
             print('instance---------',instance)
@@ -145,6 +146,12 @@ def cliente_edit(request, cliente_id):
         'cliente': cliente,
     }
     return render(request, 'Cliente/clienteEdit.html', context)
+
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, date):
+            return obj.strftime('%Y-%m-%d')
+        return json.JSONEncoder.default(self, obj)
 
 @login_required
 def cliente_borrar(request, cliente_id):  
