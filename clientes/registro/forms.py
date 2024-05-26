@@ -31,7 +31,7 @@ class ClienteFormRegistro(forms.ModelForm):
             'fechaNacimiento': forms.DateInput(attrs={'type': 'date'})
         }
     def __init__(self, *args, **kwargs):
-        super(ClienteForm, self).__init__(*args, **kwargs)
+        super(ClienteFormRegistro, self).__init__(*args, **kwargs)
        
         self.fields['terminosYCondiciones'].widget.attrs.update({'class': 'custom-checkbox'})
 
