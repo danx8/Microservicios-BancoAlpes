@@ -6,13 +6,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clientes.settings')
 import django
 django.setup()
 from clientes.models import Cliente
+from rabbit_const import *
 
-rabbit_host = '10.128.0.6'
-rabbit_user = 'monitoring_user'
-rabbit_password = 'isis2503'
-exchange = 'clientes_exchange'
-routing_key='clientes_routing_key'
-queue_name = 'clientes_queue'
 
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)

@@ -25,14 +25,8 @@ import pika
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
- 
-rabbit_host = '10.128.0.6'
-rabbit_user = 'monitoring_user'
-rabbit_password = 'isis2503'
-exchange = 'clientes_exchange'
-exchange = 'clientes_exchange'
-routing_key='clientes_routing_key'
-queue_name = 'clientes_queue'
+from ..rabbit_const import *
+
 
 connection = pika.BlockingConnection(
             pika.ConnectionParameters(host=rabbit_host,credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
@@ -97,7 +91,7 @@ def cliente_create(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
-            create_cliente(form)
+            create_cliente(form, channel)
             messages.add_message(request, messages.SUCCESS, 'Successfully created cliente')
             #return redirect(reverse('cliente_list'))
 
@@ -128,24 +122,17 @@ def cliente_edit(request, cliente_id):
         if form.is_valid():
             # Guardar los cambios si el formulario es válido
             #form.save()
-            instance = form.save(commit=False)  # Get the object instance without saving to the database yet
-            # Now you can access attributes of the object instance and perform additional operations if needed
+            instance = form.save(commit=False)  
             
-            #instance.save()
             instance_dict = model_to_dict(instance)
             json_data = json.dumps(instance_dict, cls=DateTimeEncoder)
             
-            #convertir a JSON y mandar el JSON a rabiit
-            print('instance---------',instance)
-            print('instance_dict--------------',instance_dict)
-            print('jason---',json_data)
+            print('json---',json_data)
             
             
             channel.exchange_declare(exchange=exchange, exchange_type='direct', durable=True)
            
-            channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, 
-                                  properties=pika.BasicProperties(delivery_mode=2, )
-                                  )            
+            channel.basic_publish(exchange=exchange, body=json_data, routing_key= routing_key, properties=pika.BasicProperties(delivery_mode=2, ))            
                         
                         
                         
