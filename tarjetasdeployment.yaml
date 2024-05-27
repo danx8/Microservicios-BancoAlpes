@@ -11,7 +11,7 @@ resources:
       boot: true
       autoDelete: true
       initializeParams:
-        sourceImage: https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-101-17162-463-8
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
     networkInterfaces:
     - network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/global/networks/default
       networkIP: 10.128.0.96
@@ -26,10 +26,15 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
+          sudo apt-get update
+          sudo apt install python3-pip -y
           sudo mkdir /home/proyecto
           cd /home/proyecto
           sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
           cd Microservicios-BancoAlpes/tarjetas
+          sudo pip3 install -r requirements.txt
+          sudo python3 manage.py makemigrations
+          sudo python3 manage.py migrate
 
 # Database instances
 - name: msd-tarjetas-db
