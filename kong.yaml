@@ -16,16 +16,18 @@ services:
       - name: clientes
         paths:
           - /clientes
-          - /accounts
+          - /login
+          - /
+
         strip_path: false
 
-  - name: places_service
-    host: places_upstream
+  - name: tarjetas_service
+    host: tarjetas_upstream
     protocol: http
     routes:
-      - name: places
+      - name: tarjetas
         paths:
-          - /places
+          - /tarjetas
         strip_path: false
 upstreams:
   - name: variables_upstream
@@ -38,7 +40,7 @@ upstreams:
       - target: 10.128.0.85:8080
         weight: 100
 
-  - name: places_upstream
+  - name: tarjetas_upstream
     targets:
-      - target: 10.128.0.90:8080
+      - target: 10.128.0.96:8080
         weight: 100

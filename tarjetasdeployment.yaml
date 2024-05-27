@@ -1,0 +1,61 @@
+resources:
+# Service instances
+- name: msd-tarjetas-ms
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-101-17162-463-8
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/global/networks/default
+      networkIP: 10.128.0.96
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - msd-services-firewall
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo mkdir /home/proyecto
+          cd /home/proyecto
+          sudo git clone https://github.com/danx8/Microservicios-BancoAlpes.git
+          cd Microservicios-BancoAlpes/tarjetas
+
+# Database instances
+- name: msd-tarjetas-db
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-101-17162-463-8
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-415604/global/networks/default
+      networkIP: 10.128.0.97
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - msd-service-db
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          docker run --restart=always -d -e MONGO_INITDB_ROOT_USERNAME=tarjetas_user -e MONGO_INITDB_ROOT_PASSWORD=isis2503 -p 27017:27017 --name tarjetas-db mongo
