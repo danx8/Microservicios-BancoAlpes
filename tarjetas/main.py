@@ -61,4 +61,4 @@ async def mostrar_todas_las_tarjetas(request: Request):
     tarjetas = list(collection.find({}))
 
     # Renderizar la plantilla HTML con los datos obtenidos
-    return templates.TemplateResponse("todas_lastarjetas.html", {"request": request, "tarjetas": tarjetas})
+    return templates.TemplateResponse("todaslastarjetas.html", {"request": request, "tarjetas": tarjetas})
