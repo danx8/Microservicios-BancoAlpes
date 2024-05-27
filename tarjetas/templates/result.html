@@ -1,16 +1,14 @@
-<form action="/submit" method="post">
-    <label for="ingresos">Ingresos:</label><br>
-    <input type="number" id="ingresos" name="ingresos"><br>
-    <label for="egresos">Egresos:</label><br>
-    <input type="number" id="egresos" name="egresos"><br>
-    <label for="pasivos">Pasivos:</label><br>
-    <input type="number" id="pasivos" name="pasivos"><br>
-    <label for="variables_mercado">Variables del mercado:</label><br>
-    <input type="text" id="variables_mercado" name="variables_mercado"><br>
-    <label for="tipo_tarjeta">Tipo de tarjeta:</label><br>
-    <select id="tipo_tarjeta" name="tipo_tarjeta">
-        <option value="Visa">Visa</option>
-        <option value="MasterCard">MasterCard</option>
-    </select><br>
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1>Tarjeta aprobada:</h1>
+    <p>Perfil: {{ perfil }}</p>
+    <p>Franquicia: {{ franquicia }}</p>
+    <p>Cupo: {{ cupo }}</p>
+</body>
+</html>
