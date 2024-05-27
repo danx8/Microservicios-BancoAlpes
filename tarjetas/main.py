@@ -55,6 +55,7 @@ def calcular_cupo(perfil: str) -> int:
     else:
         return 2000
     
+    
 @app.get("/tarjetas/todaslastarjetas", response_class=HTMLResponse)
 async def mostrar_todas_las_tarjetas(request: Request):
     # Obtener todas las tarjetas de la base de datos
