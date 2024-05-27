@@ -2,7 +2,7 @@ from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from database import get_database_collection
-from pydantic import BaseModel
+from pydantic import BaseModel as PydanticBaseModel
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory="templates")
 # Obtener la colección de la base de datos
 collection = get_database_collection()
 
-class User(BaseModel):
+class FormUser(PydanticBaseModel):
     ingresos: float
     egresos: float
     pasivos: float
