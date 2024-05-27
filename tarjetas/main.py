@@ -23,7 +23,8 @@ async def submit_form(
     egresos: float = Form(...),
     pasivos: float = Form(...),
     variables_mercado: str = Form(...),
-    tipo_tarjeta: str = Form(...)
+    tipo_tarjeta: str = Form(...),
+    gmail: str = Form(...)  # Nuevo parámetro
 ):
     saldo = ingresos - egresos
     if saldo < 0:
@@ -40,7 +41,7 @@ async def submit_form(
         
     cupo = calcular_cupo(perfil)
     
-    return templates.TemplateResponse("result.html", {"request": request, "perfil": perfil, "franquicia": franquicia, "cupo": cupo})
+    return templates.TemplateResponse("result.html", {"request": request, "perfil": perfil, "franquicia": franquicia, "cupo": cupo, "gmail": gmail})
 
 def calcular_cupo(perfil: str) -> int:
     if perfil == "Negra":
