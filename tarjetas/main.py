@@ -18,21 +18,34 @@ async def get_form(request: Request):
 
 @app.post("/submit")
 async def submit_form(
+    request: Request,
     ingresos: float = Form(...),
     egresos: float = Form(...),
     pasivos: float = Form(...),
-    variables_mercado: str = Form(...)
+    variables_mercado: str = Form(...),
+    tipo_tarjeta: str = Form(...)
 ):
-    # Aquí podrías implementar la lógica para determinar el perfil de tarjeta
-    # basándote en los datos proporcionados.
-    perfil, franquicia, cupo = determinar_tarjeta(ingresos, egresos, pasivos, variables_mercado)
+    saldo = ingresos - egresos
+    if saldo < 0:
+        perfil = "Negra"
+    elif saldo > 1000:
+        perfil = "Oro"
+    else:
+        perfil = "Plata"
     
-    return {"message": f"Tarjeta aprobada: Perfil: {perfil}, Franquicia: {franquicia}, Cupo: {cupo}"}
+    if tipo_tarjeta.lower() == "visa":
+        franquicia = "Visa"
+    else:
+        franquicia = "MasterCard"
+        
+    cupo = calcular_cupo(perfil)
+    
+    return templates.TemplateResponse("result.html", {"request": request, "perfil": perfil, "franquicia": franquicia, "cupo": cupo})
 
-def determinar_tarjeta(ingresos: float, egresos: float, pasivos: float, variables_mercado: str):
-    # Aquí iría tu lógica para determinar el perfil de tarjeta y otros detalles
-    # Por ahora, solo devolveremos valores de ejemplo
-    perfil = "Standard"
-    franquicia = "Visa"
-    cupo = 5000
-    return perfil, franquicia, cupo
+def calcular_cupo(perfil: str) -> int:
+    if perfil == "Negra":
+        return 10000
+    elif perfil == "Oro":
+        return 5000
+    else:
+        return 2000
