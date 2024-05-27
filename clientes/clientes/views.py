@@ -245,6 +245,21 @@ def ClientesCreate(request):
 @login_required
 def cliente_tarjeta(request):
     #role = getRole(request)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            create_cliente(form, channel)
+            messages.add_message(request, messages.SUCCESS, 'Successfully created cliente')
+            #return redirect(reverse('cliente_list'))
+
+            return HttpResponseRedirect(reverse('clientes_create'))
+        else:
+            print(form.errors)
+
+        context = {'form': form}
+        return render(request, 'Cliente/clienteCreateTarjeta2.html', context) 
+    
+    ### Entra aqui porque es GET
     email = getEmail(request)
     
     try:
@@ -256,6 +271,7 @@ def cliente_tarjeta(request):
         }
         return render(request, 'Cliente/clienteEmailFailed.html', context)
     except Http404:
+        
         form = ClienteForm(instance=None)
         context = {
             'form': form,
