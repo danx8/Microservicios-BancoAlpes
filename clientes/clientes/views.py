@@ -252,7 +252,7 @@ def cliente_tarjeta(request):
             messages.add_message(request, messages.SUCCESS, 'Successfully created cliente')
             #return redirect(reverse('cliente_list'))
 
-            return render(request, 'Cliente/clienteCreateTarjetaSuccess.html', context) 
+            return render(request, 'Cliente/clienteCreateTarjetaSuccess.html') 
         else:
             print(form.errors)
 
