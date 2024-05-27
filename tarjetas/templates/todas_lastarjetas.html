@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas las Tarjetas</title>
+</head>
+<body>
+    <h1>Todas las Tarjetas</h1>
+    <ul>
+        {% for tarjeta in tarjetas %}
+            <li>
+                <strong>Perfil:</strong> {{ tarjeta.perfil }}<br>
+                <strong>Franquicia:</strong> {{ tarjeta.franquicia }}<br>
+                <strong>Cupo:</strong> {{ tarjeta.cupo }}<br>
+                <strong>Correo electrónico:</strong> {{ tarjeta.gmail }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
