@@ -1,10 +1,13 @@
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
+from database import get_database_collection
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+# Obtener la colección de la base de datos
+collection = get_database_collection()
 
 class User(BaseModel):
     ingresos: float
@@ -24,7 +27,7 @@ async def submit_form(
     pasivos: float = Form(...),
     variables_mercado: str = Form(...),
     tipo_tarjeta: str = Form(...),
-    gmail: str = Form(...)  # Nuevo parámetro
+    gmail: str = Form(...)
 ):
     saldo = ingresos - egresos
     if saldo < 0:
@@ -50,3 +53,11 @@ def calcular_cupo(perfil: str) -> int:
         return 5000
     else:
         return 2000
+    
+@app.get("/tarjetas/todaslastarjetas", response_class=HTMLResponse)
+async def mostrar_todas_las_tarjetas(request: Request):
+    # Obtener todas las tarjetas de la base de datos
+    tarjetas = list(collection.find({}))
+
+    # Renderizar la plantilla HTML con los datos obtenidos
+    return templates.TemplateResponse("todas_lastarjetas.html", {"request": request, "tarjetas": tarjetas})
