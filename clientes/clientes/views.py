@@ -254,6 +254,6 @@ def cliente_tarjeta(request):
             'form': form,
             'cliente': cliente,
         }
-        return render(request, 'Cliente/clienteCreateTarjeta2.html', context)
+        return render(request, 'Cliente/clienteEmailFailed.html', context)
     except Http404:
-        return render(request, 'Cliente/clienteEmailFailed.html')
+        return render(request, 'Cliente/clienteCreateTarjeta2.html')
