@@ -1,5 +1,15 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client.mydatabase
-collection = db.mycollection
+# Detalles de conexión a MongoDB
+MONGO_HOST = "10.128.0.97"
+MONGO_PORT = 27017
+MONGO_USER = "tarjetas_user"
+MONGO_PASS = "isis2503"
+
+# URL de conexión
+MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/"
+
+# Conexión a MongoDB
+client = MongoClient(MONGO_URI)
+db = client.mydatabase  # Nombre de la base de datos
+collection = db.mycollection  # Nombre de la colección

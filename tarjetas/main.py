@@ -1,12 +1,15 @@
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from pymongo import MongoClient
-from models import User
-import database
+from pydantic import BaseModel
+import database  # Importa la configuración de la base de datos
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+class User(BaseModel):
+    name: str
+    email: str
 
 @app.get("/", response_class=HTMLResponse)
 async def get_form(request: Request):
