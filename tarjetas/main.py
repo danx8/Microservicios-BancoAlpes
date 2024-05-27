@@ -12,11 +12,11 @@ class User(BaseModel):
     pasivos: float
     variables_mercado: str
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/tarjetas", response_class=HTMLResponse)
 async def get_form(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
-@app.post("/submit")
+@app.post("/tarjetas/submit")
 async def submit_form(
     request: Request,
     ingresos: float = Form(...),
