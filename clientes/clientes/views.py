@@ -240,3 +240,25 @@ def ClientesCreate(request):
         
         Cliente.objects.bulk_create(cliente_list)
         return HttpResponse("successfully created clientes")
+    
+    
+@login_required
+def cliente_tarjeta(request):
+    role = getRole(request)
+    email = getEmail(request)
+    if role != "Administrador" and role != "Empleado" and role != "Normal" :
+        form = ClienteForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'Cliente/clienteFailed.html', context)
+    try:
+        cliente = get_object_or_404(Cliente, correo=email)
+        form = ClienteForm(instance=cliente)
+        context = {
+            'form': form,
+            'cliente': cliente,
+        }
+        return render(request, 'Cliente/clienteCreateTarjeta.html', context)
+    except Http404:
+        return render(request, 'Cliente/clienteEmailFailed.html')

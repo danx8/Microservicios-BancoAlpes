@@ -29,3 +29,4 @@ def healthcheck(request):
 
 def intento(request):
     return render(request, 'registro/intento.html')
+
